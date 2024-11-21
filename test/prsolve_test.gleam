@@ -6,6 +6,36 @@ pub fn main() {
   gleeunit.main()
 }
 
+pub fn two_sum_trivial_test() {
+  [1, 2, 3, 4]
+  |> prsolve.two_sum(target: 7)
+  |> should.equal([3, 2])
+}
+
+pub fn two_sum_no_pair_test() {
+  [1, 2, 3, 4]
+  |> prsolve.two_sum(target: 10)
+  |> should.equal([])
+}
+
+pub fn two_sum_one_number_test() {
+  [1]
+  |> prsolve.two_sum(target: 1)
+  |> should.equal([])
+}
+
+pub fn two_sum_empty_list_test() {
+  []
+  |> prsolve.two_sum(target: 1)
+  |> should.equal([])
+}
+
+pub fn two_sum_two_numbers_test() {
+  [1, 2]
+  |> prsolve.two_sum(target: 3)
+  |> should.equal([1, 0])
+}
+
 pub fn contains_duplicate_trivial_test() {
   [1, 2, 3, 3, 4]
   |> prsolve.contains_duplicate

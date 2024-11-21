@@ -1,9 +1,35 @@
 import gleam/dict
 import gleam/int
+import gleam/iterator
 import gleam/list
 import gleam/option
 import gleam/set
 import gleam/string
+
+pub fn two_sum(nums, target target) {
+  nums
+  |> iterator.from_list
+  |> iterator.index
+  |> iterator.to_list
+  |> two_sum_internal(dict.new(), target)
+}
+
+fn two_sum_internal(nums, memo, target) {
+  case nums {
+    [#(current, index), ..rest] -> {
+      case memo |> dict.get(target - current) {
+        Error(Nil) -> {
+          let memo = memo |> dict.insert(current, index)
+          two_sum_internal(rest, memo, target)
+        }
+        Ok(other_index) -> [index, other_index]
+      }
+    }
+    // Since we are assumming that there will always be one pair of numbers in
+    // nums that sum to target.
+    [] -> []
+  }
+}
 
 /// Returns `True` if the list contains a duplicate entry. Otherwise, returns
 /// `False`.
